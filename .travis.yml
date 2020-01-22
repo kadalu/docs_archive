@@ -1,7 +1,9 @@
-language: ruby
+language: python
+python:
+  - 3.7
 script:
-- rev=$(git rev-parse --short HEAD)
-- "./generate.sh"
+  - rev=$(git rev-parse --short HEAD)
+  - "./generate.sh"
 branches:
   only:
   - master
@@ -9,6 +11,6 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
-  local_dir: "./"
+  local_dir: "./src"
   on:
     branch: master
