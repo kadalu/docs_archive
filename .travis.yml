@@ -1,3 +1,4 @@
+language: ruby
 script:
 - rev=$(git rev-parse --short HEAD)
 - "./generate.sh"
