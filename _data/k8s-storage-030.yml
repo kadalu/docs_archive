@@ -1,0 +1,19 @@
+- section: Version
+  chapters:
+    - title: 0.4.0
+    - title: 0.3.0
+- section: User Guide
+  chapters:
+    - title: Gluster and Kadalu
+    - title: Introduction
+    - title: Quick Start
+- section: Use cases
+  chapters:
+    - title: Running a Webserver
+    - title: Running Minio
+- section: Articles
+  chapters:
+    - title: How it works?
+- section: Developer Guide
+  chapters:
+    - title: Get Involved

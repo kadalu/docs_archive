@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<div class="py-10">
+    <div class="mx-auto px-10 md:px-20 w-full sm:w-auto md:w-full xl:w-3/4">
+      <div class="flex flex-wrap">
+        {% assign urlparts = page.url | split: "/" %}
+            <nav class="breadcrumb w-full mb-10" aria-label="breadcrumbs">
+                <a class="px-2" href="{{ site.mainurl }}">Home</a>/
+                <a class="px-2" href="{{ '/docs' | prepend: site.mainurl }}">Docs</a>/
+                <a class="px-2" href="{{ '/' | append: urlparts[1] | relative_url }}">{{ urlparts[1] }}</a>/
+                <a class="px-2" href="{{ '/' | append: urlparts[1] | append: '/' | append: urlparts[2] | relative_url }}">{{ urlparts[2] }}</a>/
+                <span class="px-2" aria-current="page">{{ urlparts[3] }}</span>
+            </nav>
+            
+            <div class="w-full md:w-3/12 hidden md:block" id="doc-sidebar">
+              <aside class="menu has-right-border">
+                    {%- for section in site.data[page.data_file] -%}
+                    <h5 class="mb-3 lg:mb-2 text-gray-500 uppercase tracking-wide font-bold text-sm lg:text-xs">
+                        {{ section.section }}
+                    </h5>
+                    {% if section.section == "Version" %}
+                    <select class="menu-list mb-10" onchange="location = this.value;">
+                        {%- for chapter in section.chapters -%}
+                        {%- assign url = chapter.url | default: chapter.title -%}
+                        {% assign baseurl = "/" | append: urlparts[1] | append: "/" %}
+                        {%- assign url = url | downcase | replace: " ", "-" | prepend: baseurl -%}
+                        {% if chapter.title == urlparts[2] %}
+                        <option value="{{ url }}" selected>{{ chapter.title }}</option>
+                        {% else %}
+                        <option value="{{ url }}">{{ chapter.title }}</option>
+                        {% endif %}
+                      {%- endfor -%}
+                    </select>
+                    {% else %}
+                    <ul class="menu-list mb-10">
+                        {%- for chapter in section.chapters -%}
+                        {%- assign url = chapter.url | default: chapter.title -%}
+                        {% assign baseurl = "/" | append: urlparts[1] | append: "/" | append: urlparts[2] | append: "/" %}
+                        {%- assign url = url | downcase | replace: " ", "-" | prepend: baseurl -%}
+                        
+                        <li class="mb-3 lg:mb-1">
+                            <a class="px-2 -mx-2 py-1 transition-fast relative block text-gray-600 font-medium" href="{{ url }}">
+                                <span class="rounded absolute inset-0 bg-blue-300 {% if page.url == url %} opacity-25{% else %} opacity-0{% endif %}"></span>
+                                <span class="relative">{{ chapter.title }}</span>
+                            </a>
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                    {% endif %}
+                    {%- endfor -%}
+                </aside>
+            </div>
+
+            <div class="w-full md:w-9/12">
+                <div class="content px-0 md:px-10 doc-content">
+                    {{ content }}
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
