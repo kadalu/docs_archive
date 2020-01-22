@@ -50,6 +50,7 @@ function fetch_docs()
 
 rm -rf ${ROOTDIR}/tmpdocs
 mkdir -p ${ROOTDIR}/tmpdocs
+mkdir -p ${ROOTDIR}/_data
 
 URLPREFIX=docs1
 REPO=https://github.com/kadalu/kadalu.git

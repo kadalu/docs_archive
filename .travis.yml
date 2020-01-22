@@ -1,6 +1,8 @@
 language: python
 python:
   - 3.7
+before_s
+install: pip install PyYAML
 script:
   - rev=$(git rev-parse --short HEAD)
   - "./generate.sh"
