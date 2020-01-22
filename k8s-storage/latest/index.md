@@ -1,4 +1,4 @@
 ---
 layout: redirect
-redirect_url: /k8s-storage/0.4.0
+redirect_url: //docs1/k8s-storage/0.4.0
 ---

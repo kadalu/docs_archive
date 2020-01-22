@@ -25,20 +25,20 @@ function fetch_docs()
         echo "Added layout prefix to all *.md files.."
 
         # Set first topic as redirect
-        python3 ${ROOTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${TARGET}/${v} > ${ROOTDIR}/${TARGET}/${v}/index.md 
+        python3 ${ROOTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/${v} > ${ROOTDIR}/${TARGET}/${v}/index.md 
     done
 
     # Redirect to latest page
     echo "---" > ${ROOTDIR}/${TARGET}/index.md
     echo "layout: redirect" >> ${ROOTDIR}/${TARGET}/index.md
-    echo "redirect_url: /${TARGET}/${latest_version}" >> ${ROOTDIR}/${TARGET}/index.md
+    echo "redirect_url: /${URLPREFIX}/${TARGET}/${latest_version}" >> ${ROOTDIR}/${TARGET}/index.md
     echo "---" >> ${ROOTDIR}/${TARGET}/index.md
 
     # Setup latest redirection
     mkdir ${ROOTDIR}/${TARGET}/latest
     echo "---" > ${ROOTDIR}/${TARGET}/latest/index.md
     echo "layout: redirect" >> ${ROOTDIR}/${TARGET}/latest/index.md
-    echo "redirect_url: /${TARGET}/${latest_version}" >> ${ROOTDIR}/${TARGET}/latest/index.md
+    echo "redirect_url: /${URLPREFIX}/${TARGET}/${latest_version}" >> ${ROOTDIR}/${TARGET}/latest/index.md
     echo "---" >> ${ROOTDIR}/${TARGET}/latest/index.md
 
     cd ${ROOTDIR}/tmpdocs
@@ -48,6 +48,7 @@ function fetch_docs()
 rm -rf ${ROOTDIR}/tmpdocs
 mkdir -p ${ROOTDIR}/tmpdocs
 
+URLPREFIX=/docs1
 REPO=https://github.com/kadalu/kadalu.git
 TARGET=k8s-storage
 PROJECT=kadalu

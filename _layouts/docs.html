@@ -7,9 +7,9 @@ layout: default
         {% assign urlparts = page.url | split: "/" %}
             <nav class="breadcrumb w-full mb-10" aria-label="breadcrumbs">
                 <a class="px-2" href="{{ site.mainurl }}">Home</a>/
-                <a class="px-2" href="{{ '/docs' | prepend: site.mainurl }}">Docs</a>/
-                <a class="px-2" href="{{ '/' | append: urlparts[1] | relative_url }}">{{ urlparts[1] }}</a>/
-                <a class="px-2" href="{{ '/' | append: urlparts[1] | append: '/' | append: urlparts[2] | relative_url }}">{{ urlparts[2] }}</a>/
+                <a class="px-2" href="{{ site.urlprefix }}">Docs</a>/
+                <a class="px-2" href="{{ site.urlprefix | append: urlparts[1] | relative_url }}">{{ urlparts[1] }}</a>/
+                <a class="px-2" href="{{ site.urlprefix | append: urlparts[1] | append: '/' | append: urlparts[2] | relative_url }}">{{ urlparts[2] }}</a>/
                 <span class="px-2" aria-current="page">{{ urlparts[3] }}</span>
             </nav>
             
@@ -23,7 +23,7 @@ layout: default
                     <select class="menu-list mb-10" onchange="location = this.value;">
                         {%- for chapter in section.chapters -%}
                         {%- assign url = chapter.url | default: chapter.title -%}
-                        {% assign baseurl = "/" | append: urlparts[1] | append: "/" %}
+                        {% assign baseurl = site.urlprefix | append: urlparts[1] | append: "/" %}
                         {%- assign url = url | downcase | replace: " ", "-" | prepend: baseurl -%}
                         {% if chapter.title == urlparts[2] %}
                         <option value="{{ url }}" selected>{{ chapter.title }}</option>
@@ -36,7 +36,7 @@ layout: default
                     <ul class="menu-list mb-10">
                         {%- for chapter in section.chapters -%}
                         {%- assign url = chapter.url | default: chapter.title -%}
-                        {% assign baseurl = "/" | append: urlparts[1] | append: "/" | append: urlparts[2] | append: "/" %}
+                        {% assign baseurl = site.urlprefix | append: urlparts[1] | append: "/" | append: urlparts[2] | append: "/" %}
                         {%- assign url = url | downcase | replace: " ", "-" | prepend: baseurl -%}
                         
                         <li class="mb-3 lg:mb-1">
