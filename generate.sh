@@ -10,8 +10,11 @@ function fetch_docs()
     echo "Cloned ${PROJECT}"
     cd ${PROJECT}
     latest_version=
+    datafile=
+    echo "versions:" > ${ROOTDIR}/_data/${TARGET}-versions.yml
     for v in ${VERSIONS}
     do
+        echo "  - ${v}" >> ${ROOTDIR}/_data/${TARGET}-versions.yml        
         latest_version=$v
         git checkout -b v$v $v
         echo "Checked out ${PROJECT}:${v}"
@@ -31,15 +34,12 @@ function fetch_docs()
     # Redirect to latest page
     echo "---" > ${ROOTDIR}/${TARGET}/index.md
     echo "layout: redirect" >> ${ROOTDIR}/${TARGET}/index.md
-    echo "redirect_url: /${URLPREFIX}/${TARGET}/${latest_version}" >> ${ROOTDIR}/${TARGET}/index.md
+    echo "redirect_url: /${URLPREFIX}/${TARGET}/latest" >> ${ROOTDIR}/${TARGET}/index.md
     echo "---" >> ${ROOTDIR}/${TARGET}/index.md
 
-    # Setup latest redirection
-    mkdir ${ROOTDIR}/${TARGET}/latest
-    echo "---" > ${ROOTDIR}/${TARGET}/latest/index.md
-    echo "layout: redirect" >> ${ROOTDIR}/${TARGET}/latest/index.md
-    echo "redirect_url: /${URLPREFIX}/${TARGET}/${latest_version}" >> ${ROOTDIR}/${TARGET}/latest/index.md
-    echo "---" >> ${ROOTDIR}/${TARGET}/latest/index.md
+    cp -r ${ROOTDIR}/${TARGET}/${latest_version} ${ROOTDIR}/${TARGET}/latest
+    cp -r ${ROOTDIR}/_data/$datafile ${ROOTDIR}/_data/${TARGET}-latest.yml
+    python3 ${ROOTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/latest > ${ROOTDIR}/${TARGET}/latest/index.md 
 
     cd ${ROOTDIR}/tmpdocs
     rm -rf $PROJECT
@@ -48,7 +48,7 @@ function fetch_docs()
 rm -rf ${ROOTDIR}/tmpdocs
 mkdir -p ${ROOTDIR}/tmpdocs
 
-URLPREFIX=/docs1
+URLPREFIX=docs1
 REPO=https://github.com/kadalu/kadalu.git
 TARGET=k8s-storage
 PROJECT=kadalu

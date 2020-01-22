@@ -14,25 +14,27 @@ layout: default
             </nav>
             
             <div class="w-full md:w-3/12 hidden md:block" id="doc-sidebar">
-              <aside class="menu has-right-border">
+                <aside class="menu has-right-border">
+                    <h5 class="mb-3 lg:mb-2 text-gray-500 uppercase tracking-wide font-bold text-sm lg:text-xs">
+                        Version
+                    </h5>
+                    <select class="menu-list mb-10" onchange="location = this.value;">
+                        {% assign versions_key = urlparts[1] | append: "-versions" %}
+                        {% assign sorted_versions = site.data[versions_key].versions | sort | reverse %}
+                        {%- for ver in sorted_versions -%}
+                        {% assign baseurl = site.urlprefix | append: urlparts[1] | append: "/" %}
+                        {%- assign url = ver | downcase | replace: " ", "-" | prepend: baseurl -%}
+                        {% if ver == urlparts[2] %}
+                        <option value="{{ url }}" selected>{{ ver }}</option>
+                        {% else %}
+                        <option value="{{ url }}">{{ ver }}</option>
+                        {% endif %}
+                        {%- endfor -%}
+                    </select>
                     {%- for section in site.data[page.data_file] -%}
                     <h5 class="mb-3 lg:mb-2 text-gray-500 uppercase tracking-wide font-bold text-sm lg:text-xs">
                         {{ section.section }}
                     </h5>
-                    {% if section.section == "Version" %}
-                    <select class="menu-list mb-10" onchange="location = this.value;">
-                        {%- for chapter in section.chapters -%}
-                        {%- assign url = chapter.url | default: chapter.title -%}
-                        {% assign baseurl = site.urlprefix | append: urlparts[1] | append: "/" %}
-                        {%- assign url = url | downcase | replace: " ", "-" | prepend: baseurl -%}
-                        {% if chapter.title == urlparts[2] %}
-                        <option value="{{ url }}" selected>{{ chapter.title }}</option>
-                        {% else %}
-                        <option value="{{ url }}">{{ chapter.title }}</option>
-                        {% endif %}
-                      {%- endfor -%}
-                    </select>
-                    {% else %}
                     <ul class="menu-list mb-10">
                         {%- for chapter in section.chapters -%}
                         {%- assign url = chapter.url | default: chapter.title -%}
@@ -47,7 +49,6 @@ layout: default
                         </li>
                         {%- endfor -%}
                     </ul>
-                    {% endif %}
                     {%- endfor -%}
                 </aside>
             </div>

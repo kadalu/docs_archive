@@ -1,0 +1,13 @@
+script:
+- rev=$(git rev-parse --short HEAD)
+- "./generate.sh"
+branches:
+  only:
+  - master
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  local_dir: "./"
+  on:
+    branch: master

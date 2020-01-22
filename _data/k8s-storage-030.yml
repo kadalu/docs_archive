@@ -1,7 +1,3 @@
-- section: Version
-  chapters:
-    - title: 0.4.0
-    - title: 0.3.0
 - section: User Guide
   chapters:
     - title: Gluster and Kadalu

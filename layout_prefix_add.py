@@ -9,8 +9,9 @@ for root, dirs, files in os.walk(sys.argv[1], topdown = False):
             fullpath = os.path.join(root, name)
             with open(fullpath + ".tmp", "w") as tmpfile:
                 tmpfile.write(
-                    "---\nlayout: docs\ndata_file: %s\n---\n" % (
-                        data_file.replace(".", "")
+                    "---\nlayout: docs\ndata_file: %s\nversion: %s\n---\n" % (
+                        data_file.replace(".", ""),
+                        os.path.basename(sys.argv[1])
                     ))
 
                 with open(fullpath) as mdfile:
