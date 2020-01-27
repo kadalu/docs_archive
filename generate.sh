@@ -25,7 +25,6 @@ function fetch_docs()
         cp -r doc ${ROOTDIR}/${TARGET}/$v
         echo "Doc files copied to ${ROOTDIR}/${TARGET}/$v"
         datafile=$(echo "${TARGET}-$v" | tr -d '.')
-        cp ${ROOTDIR}/sample.yml doc/index.yml
         mv doc/index.yml ${ROOTDIR}/_data/${datafile}.yml
         python3 ${SCRIPTDIR}/layout_prefix_add.py ${ROOTDIR}/${TARGET}/$v ${datafile}
         echo "Added layout prefix to all *.md files.."
@@ -56,7 +55,7 @@ URLPREFIX=docs1
 REPO=https://github.com/kadalu/kadalu.git
 TARGET=k8s-storage
 PROJECT=kadalu
-VERSIONS="0.3.0 0.4.0"
+VERSIONS="master"
 fetch_docs
 
 cd ${ROOTDIR}/
