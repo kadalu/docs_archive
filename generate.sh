@@ -51,7 +51,7 @@ rm -rf ${ROOTDIR}/tmpdocs
 mkdir -p ${ROOTDIR}/tmpdocs
 mkdir -p ${ROOTDIR}/_data
 
-URLPREFIX=docs1
+URLPREFIX=docs
 REPO=https://github.com/kadalu/kadalu.git
 TARGET=k8s-storage
 PROJECT=kadalu
