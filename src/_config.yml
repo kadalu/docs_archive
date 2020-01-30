@@ -28,7 +28,7 @@ twitter_username: kadaluIO
 github_username:  kadalu
 linkedin: kadalu-io
 mainurl: https://kadalu.io
-urlprefix: "/docs1/"
+urlprefix: "/docs/"
 permalink: /:title
 
 collections:
