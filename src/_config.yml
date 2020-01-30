@@ -63,6 +63,6 @@ plugins:
 #   - vendor/ruby/
 
 doc_projects:
-  - title: Kubernetes Storage
+  - title: Kadalu Container Storage
     url: k8s-storage
     description: "Kadalu project offers a lightweight persistent storage solution for applications running in Kubernetes."
