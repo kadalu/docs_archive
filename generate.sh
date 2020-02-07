@@ -48,6 +48,10 @@ function fetch_docs()
 
     cp -r ${ROOTDIR}/${TARGET}/${latest_version} ${ROOTDIR}/${TARGET}/latest
     cp -r ${ROOTDIR}/_data/$datafile ${ROOTDIR}/_data/${TARGET}-latest.yml
+
+    # Make sure to change the latest_version to 'latest' in links too.
+    sed -i -e "s#](https://kadalu.io/docs/${TARGET}/${latest_version}/#](https://kadalu.io/docs/${TARGET}/latest/#g" ${ROOTDIR}/${TARGET}/latest/*
+
     python3 ${SCRIPTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/latest > ${ROOTDIR}/${TARGET}/latest/index.md 
 
     cd ${ROOTDIR}/tmpdocs
