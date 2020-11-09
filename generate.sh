@@ -24,13 +24,10 @@ function fetch_docs()
         mkdir -p ${ROOTDIR}/${TARGET}/
 
 	# Make sure to convert the local links in github to proper links in website
-	sed -i -e "s#](./#](https://kadalu.io/docs/${TARGET}/${v}/#g" doc/*.md
+	sed -i -e "s#](./\.*\)[.md])#](https://kadalu.io/docs/${TARGET}/${v}/\1#g" doc/*.md
 
 	# Make sure to convert the local links in github to proper links in github itself
-	sed -i -e "s#](../#](https://github.com/kadalu/${PROJECT}/#g" doc/*.md
-
-        # Remove .md from link targets
-        sed -i -e "s#.md)#)#g" doc/*.md
+	sed -i -e "s#](../#](https://github.com/kadalu/${PROJECT}/tree/${v}/#g" doc/*.md
 
         cp -r doc ${ROOTDIR}/${TARGET}/$v
         echo "Doc files copied to ${ROOTDIR}/${TARGET}/$v"
