@@ -9,7 +9,7 @@ function fetch_docs()
 {
     rm -rf ${ROOTDIR}/${TARGET}
     cd ${ROOTDIR}/tmpdocs
-    git clone ${REPO}
+    git clone --depth 1 ${REPO} ${PROJECT}
     echo "Cloned ${PROJECT}"
     cd ${PROJECT}
     latest_version=
@@ -37,7 +37,7 @@ function fetch_docs()
         echo "Added layout prefix to all *.md files.."
 
         # Set first topic as redirect
-        python3 ${SCRIPTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/${v} > ${ROOTDIR}/${TARGET}/${v}/index.md 
+        python3 ${SCRIPTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/${v} > ${ROOTDIR}/${TARGET}/${v}/index.md
     done
 
     # Redirect to latest page
@@ -47,12 +47,12 @@ function fetch_docs()
     echo "---" >> ${ROOTDIR}/${TARGET}/index.md
 
     cp -r ${ROOTDIR}/${TARGET}/${latest_version} ${ROOTDIR}/${TARGET}/latest
-    cp -r ${ROOTDIR}/_data/$datafile ${ROOTDIR}/_data/${TARGET}-latest.yml
+    cp -r ${ROOTDIR}/_data/$datafile.yml ${ROOTDIR}/_data/${TARGET}-latest.yml
 
     # Make sure to change the latest_version to 'latest' in links too.
-    sed -i -e "s#](https://kadalu.io/docs/${TARGET}/${latest_version}/#](https://kadalu.io/docs/${TARGET}/latest/#g" ${ROOTDIR}/${TARGET}/latest/*
+    find ${ROOTDIR}/${TARGET}/latest/* -type f -print | xargs sed -i -e "s#](https://kadalu.io/docs/${TARGET}/${latest_version}/#](https://kadalu.io/docs/${TARGET}/latest/#g"
 
-    python3 ${SCRIPTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/latest > ${ROOTDIR}/${TARGET}/latest/index.md 
+    python3 ${SCRIPTDIR}/first_title.py ${ROOTDIR}/_data/${datafile}.yml /${URLPREFIX}/${TARGET}/latest > ${ROOTDIR}/${TARGET}/latest/index.md
 
     cd ${ROOTDIR}/tmpdocs
     rm -rf $PROJECT
