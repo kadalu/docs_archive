@@ -1,11 +1,11 @@
 ---
 layout: docs
-data_file: k8s-storage-devel
+data_file: k8s-storage-develyml
 version: devel
 ---
 # Quick Start
 
-> >  **NOTE:** This document is written with the focus to have a single document which can fit both new-comers to k8s ecosystem, and also those who know the system. If you are well versed with k8s yaml files, and can manage using 'kubectl' directly, you can use kadalu without python3 dependency, directly using yaml files. Check [this document](https://kadalu.io/docs/k8s-storage/devel/quick-start-yaml) for more details.
+> >  **NOTE:** This document is written with the focus to have a single document which can fit both new-comers to k8s ecosystem, and also those who know the system. If you are well versed with k8s yaml files, and can manage using 'kubectl' directly, you can use kadalu without python3 dependency, directly using yaml files. Check [this document](https://kadalu.io/docs/k8s-storage/latest/quick-start-yaml) for more details.
 
 
 Download the latest release of Kadalu Kubectl plugin using,

@@ -1,6 +1,6 @@
 ---
 layout: docs
-data_file: k8s-storage-devel
+data_file: k8s-storage-develyml
 version: devel
 ---
 # Kadalu Storage Config
@@ -180,4 +180,4 @@ Other than this, the CSI volume's behavior would be same for both Native mode, a
 
 This is a hidden option provided in kadalu to access a gluster volume as a whole as PV. This is particularly useful if one wants to use an already existing Gluster volume as a PV (for example, a gluster volume created by heketi). We don't recommend this for normal usage, as this mode would have scale limitations, and also would add more k8s resources likes StorageClass.
 
-This option is not provided using storage config, but admin/user has to create a StorageClass themselves with external gluster information. The example config file added for CI/CD gives an idea about options. Note that the options provided here looks same as whats given in storage config, but when kadalu operator creates the StorageClass, it adds another field `kadalu-format: true`. Refer the [external-storage document](https://kadalu.io/docs/k8s-storage/devel/external-gluster-storage) for more information on this mode.
+This option is not provided using storage config, but admin/user has to create a StorageClass themselves with external gluster information. The example config file added for CI/CD gives an idea about options. Note that the options provided here looks same as whats given in storage config, but when kadalu operator creates the StorageClass, it adds another field `kadalu-format: true`. Refer the [external-storage document](https://kadalu.io/docs/k8s-storage/latest/external-gluster-storage) for more information on this mode.

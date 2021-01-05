@@ -1,6 +1,6 @@
 ---
 layout: docs
-data_file: k8s-storage-devel
+data_file: k8s-storage-develyml
 version: devel
 ---
 # Try Kadalu
@@ -134,4 +134,4 @@ As long as glusterfs promises to keep the backend layout same, and continue to p
 
 ### Gluster and Kadalu
 
-We have compiled a list of things [here](https://kadalu.io/docs/k8s-storage/devel/gluster-and-kadalu)
+We have compiled a list of things [here](https://kadalu.io/docs/k8s-storage/latest/gluster-and-kadalu)
