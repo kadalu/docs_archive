@@ -1,6 +1,6 @@
 ---
 layout: docs
-data_file: k8s-storage-develyml
+data_file: k8s-storage-devel
 version: devel
 ---
 # Quick Start
