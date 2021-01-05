@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - main
+      - build_test
 
 jobs:
   devel-tag-push:
@@ -18,7 +19,6 @@ jobs:
     - name: Install dependencies pylint
       run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
           pip install PyYAML
     - name: Generate
       run: "rev=$(git rev-parse --short HEAD) ./generate.sh"
