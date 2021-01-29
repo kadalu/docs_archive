@@ -7,6 +7,9 @@ on:
       - main
       - build_test
 
+  # Allow to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
   devel-tag-push:
     runs-on: ubuntu-latest
