@@ -66,7 +66,7 @@ URLPREFIX=docs
 REPO=https://github.com/kadalu/kadalu.git
 TARGET=k8s-storage
 PROJECT=kadalu
-VERSIONS="devel"
+VERSIONS="devel 0.7.7 0.8.0"
 fetch_docs
 
 cd ${ROOTDIR}/
